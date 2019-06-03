@@ -1,5 +1,7 @@
 {
   "name": "event0619",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
