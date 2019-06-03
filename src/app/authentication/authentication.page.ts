@@ -35,9 +35,9 @@ export class AuthenticationPage implements OnInit {
           this.menu.enable(true);
         },
         (err) => {
-          console.warn(err);
           this.router.navigate(['/home']);
           this.menu.enable(true);
+          console.warn(err);
           // alert('Erreur');
         }
       );

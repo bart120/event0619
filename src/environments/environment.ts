@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlAuth: 'http://formation-roomy.inow.fr/token?grant_type=password'
+  urlAuth: 'http://formation-roomy.inow.fr/token?'
 };
 
 /*
