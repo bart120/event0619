@@ -24,4 +24,7 @@ export class EventsIndexPage implements OnInit {
   detailEvent(id: number): void {
     this.router.navigate([`/events/detail/${id}`]);
   }
+  addCalendar(ev: Event): void {
+
+  }
 }
