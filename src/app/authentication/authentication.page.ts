@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from './authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentication',
@@ -8,10 +11,37 @@ import { MenuController } from '@ionic/angular';
 })
 export class AuthenticationPage implements OnInit {
 
-  constructor(private menu: MenuController) { }
+  formAuth: FormGroup;
+
+  constructor(
+    private menu: MenuController,
+    private formBuilder: FormBuilder,
+    private auth: AuthenticationService,
+    private router: Router) { }
 
   ngOnInit() {
+    this.formAuth = this.formBuilder.group({
+      login: [null, Validators.required],
+      password: [null, Validators.required]
+    });
     this.menu.enable(false);
+  }
+
+  login(): void {
+    if (this.formAuth.valid) {
+      this.auth.login(this.formAuth.value.login, this.formAuth.value.password).subscribe(
+        (data) => {
+          this.router.navigate(['/home']);
+          this.menu.enable(true);
+        },
+        (err) => {
+          console.warn(err);
+          this.router.navigate(['/home']);
+          this.menu.enable(true);
+          // alert('Erreur');
+        }
+      );
+    }
   }
 
 }
