@@ -24,7 +24,7 @@ export class AuthenticationPage implements OnInit {
       login: [null, Validators.required],
       password: [null, Validators.required]
     });
-    this.menu.enable(false);
+    // this.menu.enable(false);
   }
 
   login(): void {
@@ -32,11 +32,9 @@ export class AuthenticationPage implements OnInit {
       this.auth.login(this.formAuth.value.login, this.formAuth.value.password).subscribe(
         (data) => {
           this.router.navigate(['/home']);
-          this.menu.enable(true);
+          // this.menu.enable(true);
         },
         (err) => {
-          this.router.navigate(['/home']);
-          this.menu.enable(true);
           console.warn(err);
           // alert('Erreur');
         }
