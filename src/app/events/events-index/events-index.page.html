@@ -14,7 +14,7 @@
       <ion-item>
         <ion-label>{{ev.title}}</ion-label>
         <ion-text color="primary">
-          {{ev.eventDate | date:'d MMM y'}}
+          {{ev.publishDate | date:'d MMM y'}}
         </ion-text>
         <div slot="end">
           <ion-button (click)="detailEvent(ev.id)">VOIR</ion-button>

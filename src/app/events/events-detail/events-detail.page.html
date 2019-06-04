@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>events-detail</ion-title>
+    <ion-title>{{event?.title}}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -8,5 +8,16 @@
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-icon name="pin" slot="start"></ion-icon>
+      <ion-label>{{event?.title}}</ion-label>
+      <ion-button fill="outline" slot="end">Ajouter au calendrier</ion-button>
+    </ion-item>
+
+    <ion-card-content>
+      {{event?.content}}
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
