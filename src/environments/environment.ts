@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  urlAuth: 'http://formation-roomy.inow.fr/token?',
-  urlEvent: 'http://formation-roomy.inow.fr/api/news/'
+  urlAuth: 'https://formation-roomy.inow.fr/token?',
+  urlEvent: 'https://formation-roomy.inow.fr/api/news/'
 };
 
 /*
