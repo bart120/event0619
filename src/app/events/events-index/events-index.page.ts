@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Event } from 'src/app/models/event.model';
 import { Router } from '@angular/router';
 import { EventsService } from 'src/app/services/events.service';
+import { Calendar } from '@ionic-native/calendar/ngx';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-events-index',
@@ -12,7 +14,11 @@ export class EventsIndexPage implements OnInit {
 
   listEvents: Array<Event>;
 
-  constructor(private router: Router, private serv: EventsService) { }
+  constructor(
+    private router: Router,
+    private serv: EventsService,
+    private calendar: Calendar,
+    private toastController: ToastController) { }
 
   ngOnInit() {
     /*this.listEvents = [
@@ -29,6 +35,24 @@ export class EventsIndexPage implements OnInit {
     this.router.navigate([`/events/detail/${id}`]);
   }
   addCalendar(ev: Event): void {
-
+    this.calendar.createEvent(ev.title, '', '', new Date(ev.publishDate), new Date(ev.publishDate))
+      .then(
+        async data => {
+          const toast = await this.toastController.create({
+            message: `Evénement ${ev.title} créé: ${data}`,
+            duration: 2000
+          });
+          toast.present();
+          this.calendar.openCalendar(new Date(ev.publishDate));
+        }
+      ).catch(
+        async err => {
+          const toast = await this.toastController.create({
+            message: `${err}`,
+            duration: 2000
+          });
+          toast.present();
+        }
+      );
   }
 }

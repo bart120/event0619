@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule, Routes } from '@angular/router';
 import { EventsIndexPage } from './events-index/events-index.page';
 import { EventsDetailPage } from './events-detail/events-detail.page';
+import { Calendar } from '@ionic-native/calendar/ngx';
 
 const routes: Routes = [
   {
@@ -24,6 +25,9 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes)
+  ],
+  providers:[
+    Calendar
   ]
 })
 export class EventsModule {
