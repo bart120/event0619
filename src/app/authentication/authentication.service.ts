@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -24,7 +25,7 @@ export class AuthenticationService {
         return this.authSubject.asObservable();
     }
 
-    constructor(private http: HttpClient, private storage: Storage) { }
+    constructor(private http: HttpClient, private storage: Storage, private router: Router) { }
 
     login(login: string, password: string): Observable<any> {
         return this.http.post(`${environment.urlAuth}`, `username=${login}&password=${password}&grant_type=password`, httpOptions).pipe(
@@ -43,5 +44,6 @@ export class AuthenticationService {
         this.authSubject.next('');
         await this.storage.remove('ACCESS_TOKEN');
         await this.storage.remove('EXPRIRES_IN');
+        this.router.navigate(['/authentication']);
     }
 }

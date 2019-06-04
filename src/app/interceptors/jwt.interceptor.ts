@@ -19,8 +19,8 @@ export class JwtInterceptor implements HttpInterceptor {
         if (this.token !== '') {
             req = req.clone({
                 setHeaders: {
-                    Authorization: `Bearer ${this.token}`,
-                    Host: 'formation-roomy.inow.fr'
+                    // Authorization: `Bearer ${this.token}`,
+                    Accept: 'application/json'
                 }
             });
         }

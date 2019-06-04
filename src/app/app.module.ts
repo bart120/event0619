@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { ErrorsInterceptor } from './interceptors/errors.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorsInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
